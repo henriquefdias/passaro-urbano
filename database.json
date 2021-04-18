@@ -22,7 +22,7 @@
 			"descricao_oferta": "Almoço ou Jantar com Rodízio Mexicano delicioso.",
 			"anunciante": "Mexicana",
 			"valor": 32.90,
-			"destaque": true,
+			"destaque": false,
 			"imagens": [
 				{"url": "/assets/ofertas/2/img1.jpg"},
 				{"url": "/assets/ofertas/2/img2.jpg"},
@@ -37,7 +37,7 @@
 			"descricao_oferta": "Pizza Grande, Mussarela, Marguerita ou outras!",
 			"anunciante": "Nossa Pizza",
 			"valor": 21.90,
-			"destaque": false,
+			"destaque": true,
 			"imagens": [
 				{"url": "/assets/ofertas/3/img1.jpg"},
 				{"url": "/assets/ofertas/3/img2.jpg"},

@@ -1,5 +1,5 @@
 img {
-    border-radius: 5px;
+    border-radius: 10px;
     width: 320px;
     height: 200px
 }
@@ -8,3 +8,4 @@ img {
     padding-left: 25px;
     padding-right: 25px;
 }
+
