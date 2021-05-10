@@ -41,11 +41,15 @@ export class OfertaComponent implements OnInit {
     // observable (observavel)
     let meuObservableTeste = new Observable((observer: Observer<string>) => {
       observer.next('Primeiro evento da stream')
+      observer.error('Algum erro foi encontrado na stream de eventos')
+      observer.complete()
     })
 
     // observable (observador)
     meuObservableTeste.subscribe(
-      (resultado: any) => console.log(resultado)
+      (resultado: string) => console.log(resultado),
+      (erro: string) => console.log(erro),
+      () => console.log('Stream de eventos finalizada')
     )
     
   }
