@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
-import { interval, Observable, Observer } from 'rxjs';
+import { interval, Observable, Observer, Subscription } from 'rxjs';
 import { OfertasService } from "../ofertas.service";
 import { Oferta } from '../shared/oferta.model';
 
@@ -10,8 +10,10 @@ import { Oferta } from '../shared/oferta.model';
   styleUrls: ['./oferta.component.css'],
   providers: [ OfertasService ]
 })
-export class OfertaComponent implements OnInit {
+export class OfertaComponent implements OnInit, OnDestroy {
 
+  private tempoObservableSubscription: Subscription
+  private meuObservableTesteSubscription: Subscription
   public oferta: Oferta
 
   constructor(private route: ActivatedRoute, private ofertasService: OfertasService) { }
@@ -30,28 +32,33 @@ export class OfertaComponent implements OnInit {
       () => console.log("Processamento classificado como concluído.")
     )
     */
-    /*
+    
     let tempo = interval(2000)
 
-    tempo.subscribe((intervalo: number) => {
+    this.tempoObservableSubscription = tempo.subscribe((intervalo: number) => {
       console.log(intervalo)
     })
-    */
+  
 
     // observable (observavel)
     let meuObservableTeste = new Observable((observer: Observer<string>) => {
       observer.next('Primeiro evento da stream')
-      observer.error('Algum erro foi encontrado na stream de eventos')
+      //observer.error('Algum erro foi encontrado na stream de eventos')
       observer.complete()
     })
 
     // observable (observador)
-    meuObservableTeste.subscribe(
+    this.meuObservableTesteSubscription = meuObservableTeste.subscribe(
       (resultado: string) => console.log(resultado),
       (erro: string) => console.log(erro),
       () => console.log('Stream de eventos finalizada')
     )
     
+  }
+
+  ngOnDestroy() {
+    this.meuObservableTesteSubscription.unsubscribe()
+    this.tempoObservableSubscription.unsubscribe()
   }
 
 }
