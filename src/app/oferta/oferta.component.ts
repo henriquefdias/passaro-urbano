@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
-import { interval, Observable, Observer, Subscription } from 'rxjs';
+// import { interval, Observable, Observer, Subscription } from 'rxjs';
 import { OfertasService } from "../ofertas.service";
 import { Oferta } from '../shared/oferta.model';
 
@@ -12,8 +12,8 @@ import { Oferta } from '../shared/oferta.model';
 })
 export class OfertaComponent implements OnInit, OnDestroy {
 
-  private tempoObservableSubscription: Subscription
-  private meuObservableTesteSubscription: Subscription
+  // private tempoObservableSubscription: Subscription
+  // private meuObservableTesteSubscription: Subscription
   public oferta: Oferta
 
   constructor(private route: ActivatedRoute, private ofertasService: OfertasService) { }
@@ -33,6 +33,9 @@ export class OfertaComponent implements OnInit, OnDestroy {
     )
     */
     
+    /*
+    Testes com Observables
+
     let tempo = interval(2000)
 
     this.tempoObservableSubscription = tempo.subscribe((intervalo: number) => {
@@ -53,12 +56,16 @@ export class OfertaComponent implements OnInit, OnDestroy {
       (erro: string) => console.log(erro),
       () => console.log('Stream de eventos finalizada')
     )
+    */
     
   }
 
   ngOnDestroy() {
+    /*
+    Unsubscribe
     this.meuObservableTesteSubscription.unsubscribe()
     this.tempoObservableSubscription.unsubscribe()
+    */
   }
 
 }
