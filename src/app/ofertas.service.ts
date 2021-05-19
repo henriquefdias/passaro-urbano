@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { Oferta } from './shared/oferta.model';
 import { URL_API } from "./app.api";
 import { Observable } from 'rxjs';
-import { map } from "rxjs/operators";
+import { map, retry } from "rxjs/operators";
 //import 'rxjs/add/operator/toPromise';
 
 @Injectable()
@@ -49,7 +49,7 @@ export class OfertasService {
 
 	public pesquisaOfertas(termo: string): Observable<Oferta[]> {
 		return this.http.get(`${URL_API}/ofertas?descricao_oferta_like=${termo}`)
-			.pipe(map((resposta: any) => resposta))
+			.pipe(map((resposta: any) => resposta), retry(10))
 	}
 
 	/*
