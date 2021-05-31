@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, of, Subject } from 'rxjs';
-import { debounceTime, switchMap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, switchMap, catchError } from 'rxjs/operators';
 import { OfertasService } from "../ofertas.service";
 import { Oferta } from '../shared/oferta.model';
 
@@ -20,6 +20,7 @@ export class TopoComponent implements OnInit {
   ngOnInit(): void {
     this.ofertas = this.subjectPesquisa.pipe(
       debounceTime(1000), // Executa a ação do switchMap após 1 segundo.
+      distinctUntilChanged(),
       switchMap((termo: string) => {
         console.log('requisicao http para api')
         if(termo.trim() === ''){
@@ -27,8 +28,13 @@ export class TopoComponent implements OnInit {
           return of<Oferta[]>([])
         }
         return this.ofertasService.pesquisaOfertas(termo)
+      }),
+      catchError((err: any) => {
+        console.log(err)
+        return of<Oferta[]>([])
       })
     ) //retorno Oferta[]
+    
 
     this.ofertas.subscribe(
       (ofertas: Oferta[]) => console.log(ofertas)
