@@ -17,6 +17,10 @@
         <div class="row">
           <h4>{{oferta.titulo}}</h4>
         </div>
+
+        <div class="row">
+          <h4>Oferta disponível até {{ dataTeste | date:'dd/mm/yyyy' }}</h4>
+        </div>
   
         <div class="row">
           <h6>{{oferta.descricao_oferta}}</h6>
