@@ -10,13 +10,10 @@ export class OrdemCompraService {
 
     constructor(private httpClient: HttpClient) {}
 
-    public efetivarCompra(pedido: Pedido): Observable<any> {
-
+    public efetivarCompra(pedido: Pedido): Observable<number> {
         return this.httpClient.post(
             `${URL_API}/pedidos`,
             pedido
-        ).pipe(map((resposta: Response) => {
-            console.log(resposta)
-        }))
+        ).pipe(map((resposta: Response) => resposta['id']))
     }
 }
