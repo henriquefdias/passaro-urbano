@@ -1,14 +1,16 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Params } from "@angular/router";
+import CarrinhoService from '../carrinho.service';
 // import { interval, Observable, Observer, Subscription } from 'rxjs';
 import { OfertasService } from "../ofertas.service";
+
 import { Oferta } from '../shared/oferta.model';
 
 @Component({
   selector: 'app-oferta',
   templateUrl: './oferta.component.html',
   styleUrls: ['./oferta.component.css'],
-  providers: [ OfertasService ]
+  providers: [ OfertasService, CarrinhoService ]
 })
 export class OfertaComponent implements OnInit, OnDestroy {
 
@@ -16,7 +18,11 @@ export class OfertaComponent implements OnInit, OnDestroy {
   // private meuObservableTesteSubscription: Subscription
   public oferta: Oferta
 
-  constructor(private route: ActivatedRoute, private ofertasService: OfertasService) { }
+  constructor(
+    private route: ActivatedRoute, 
+    private ofertasService: OfertasService,
+    private carrinhoService: CarrinhoService
+  ) { }
 
   ngOnInit(): void {
 
@@ -26,6 +32,8 @@ export class OfertaComponent implements OnInit, OnDestroy {
         this.oferta = oferta
       })
     })
+
+    console.log(this.carrinhoService.exibirItens())
 
     /* Método snapshot
     this.ofertasService.getOfertaPorId(this.route.snapshot.params['id'])
