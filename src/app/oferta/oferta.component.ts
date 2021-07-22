@@ -33,8 +33,6 @@ export class OfertaComponent implements OnInit, OnDestroy {
       })
     })
 
-    console.log(this.carrinhoService.exibirItens())
-
     /* Método snapshot
     this.ofertasService.getOfertaPorId(this.route.snapshot.params['id'])
       .then((oferta: Oferta) => {
@@ -82,6 +80,10 @@ export class OfertaComponent implements OnInit, OnDestroy {
     this.meuObservableTesteSubscription.unsubscribe()
     this.tempoObservableSubscription.unsubscribe()
     */
+  }
+
+  public adicionarItemCarrinho(): void {
+    this.carrinhoService.incluirItem(this.oferta)
   }
 
 }
