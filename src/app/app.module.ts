@@ -51,10 +51,7 @@ registerLocaleData(localePt);
     ReactiveFormsModule,
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [ 
-    {provide: CarrinhoService, useValue: CarrinhoService}, 
-    {provide: LOCALE_ID, useValue: 'pt'} 
-  ],
+  providers: [ CarrinhoService, {provide: LOCALE_ID, useValue: 'pt'} ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
