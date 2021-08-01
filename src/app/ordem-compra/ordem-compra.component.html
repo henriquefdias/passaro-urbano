@@ -4,7 +4,7 @@
     
       <h5>Sua Compra</h5>
       <hr />
-      <div *ngIf="carrinhoService.exibirItens().lenght; else carrinhoVazio">
+      <div *ngIf="carrinhoService.exibirItens().length; else carrinhoVazio">
         <div *ngFor="let item of itensCarrinho" class="form-row" style="background: #FAFAFA; padding: 20px; border-bottom: solid 1px #F0F0F0">
           <div class="form-group col-sm-1">
             <img [src]="item.img.url" class="img-fluid">
